@@ -1,0 +1,18 @@
+services:
+  backend:
+    image: banca-be:v2
+    expose:
+      - "8000"
+
+  frontend:
+    image: banca-fe:v2
+    expose:
+      - "4200"
+
+  nginx:
+    image: banca-proxy:v1
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend

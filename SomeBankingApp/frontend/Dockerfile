@@ -1,7 +1,8 @@
 FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
+RUN apk add --no-cache git
+WORKDIR /repo
+RUN git clone https://github.com/igorbeltra/SSS2026.git .
+WORKDIR /repo/SomeBankingApp/frontend
 RUN npm ci
-COPY . .
 EXPOSE 4200
 CMD ["npx", "ng", "serve", "--host", "0.0.0.0"]
