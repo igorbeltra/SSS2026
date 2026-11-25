@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/igorbeltra/SSS2026.git'
+            }
+        }
+
+        stage('Build Backend') {
+            steps {
+                sh 'docker build -t banca-be:jenkins ./SomeBankingApp/backend'
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                sh 'docker build -t banca-fe:jenkins ./SomeBankingApp/frontend'
+            }
+        }
+    }
+}
